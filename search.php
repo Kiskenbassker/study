@@ -20,14 +20,13 @@
                 }
             }
             $alltime = microtime(true) - $start;
-            echo 'Your integer has been found on position '.$indexator.' for '.$alltime. ' seconds';
+            echo 'Your integer has been found by Straight search on position '.$indexator.' for '.$alltime. ' seconds';
             return $indexator;
         } else {
             echo 'Please enter number from 1 to 900 and array!';
             return 'Please enter number from 1 to 900 and array!';
         }
     }
-    //straightSearch(899, $rn);
 
 /**
  * Функция бинарного поиска по упорядоченному массиву
@@ -37,6 +36,7 @@
  */
 function binarySearch(&$source_array, $search_value)
 {
+    $start_time = $_SERVER['REQUEST_TIME'];
     sort($source_array);
     $count = count($source_array); // считаем количество элементов в массиве
     if ($count < pow(2, 31) && is_int($search_value)) {
@@ -55,7 +55,8 @@ function binarySearch(&$source_array, $search_value)
             if ($source_array[$mid] == $search_value) {
                 while (($mid != 0) && ($source_array[$mid - 1] == $search_value))
                     $mid--;
-                echo $mid;
+                $alltime = microtime(true) - $start_time;
+                echo 'Binary search had found your integer on position ' .$mid. ' in '.$alltime.' seconds';
                 return $mid;
             } elseif ($source_array[$mid] > $search_value) {
                 $end = $mid - 1;
@@ -68,5 +69,6 @@ function binarySearch(&$source_array, $search_value)
     }
 }
 
+straightSearch(899, $rn);
 binarySearch($rn, 345);
 ?>
