@@ -1,7 +1,7 @@
 <?php
+
     $rn = range(1, 900);
     shuffle($rn);
-
 /**
  * Straight search through array
  *
